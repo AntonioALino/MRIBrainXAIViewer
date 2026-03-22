@@ -328,7 +328,7 @@ MIT License — veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 Desenvolvido por Antônio Lino
 
-- LinkedIn: [Antônio Lino]([https://linkedin.com/in/seu-perfil](https://www.linkedin.com/in/antonio-augusto-prado-lino)
+- LinkedIn: [Antônio Lino]([(https://www.linkedin.com/in/antonio-augusto-prado-lino)])
 
 ---
 
