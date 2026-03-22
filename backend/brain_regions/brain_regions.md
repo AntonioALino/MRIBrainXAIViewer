@@ -414,7 +414,7 @@ async def region_by_coords(payload: dict):
 async def region_by_id(region_id: str):
     return JSONResponse(get_region_info(region_id))
 
-@app.get("/brain-regions")
+@app.get("/brain_regions")
 async def all_regions():
     return JSONResponse(list_all_regions())
 ```

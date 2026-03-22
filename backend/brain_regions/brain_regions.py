@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from pandas.conftest import ordered
-
 RegionDict = dict[str, object]
 
 BRAIN_REGIONS: dict[str, RegionDict] = {

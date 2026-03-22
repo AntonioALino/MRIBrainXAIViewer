@@ -26,7 +26,7 @@ class BrainMRIClassifier(nn.Module):
         )
 
         # Todos os parâmetros treináveis (fine-tuning completo)
-            #Técnica de aprendizado de máquina onde um modelo de Inteligência Artificial pré-treinado (como GPT, BERT ou CNNs) é retreinado em um conjunto de dados menor e específico.
+            #Técnica de aprendizado de máquina onde um modelo de Inteligência Artificial pré-treinado (como GPT, BERT ou CNNs) é retreinado num conjunto de dados menor e específico.
         for param in self.backbone.parameters():
             param.requires_grad = True
 
@@ -36,7 +36,7 @@ class BrainMRIClassifier(nn.Module):
             nn.Linear(in_features, 256),
             nn.ReLU(inplace=True),
             nn.Dropout(0.5),
-            nn.Linear(256, 256),
+            nn.Linear(256, num_classes),
         )
 
         # Buffers para Grad-CAM
@@ -51,13 +51,14 @@ class BrainMRIClassifier(nn.Module):
             self._activations = output.detach()
 
         def _save_gradients(module, grand_in, grad_out):
-            self._gradients = grad_out.detach()
+            self._gradients = grad_out[0].detach()
 
         self.backbone.layer4.register_forward_hook(_save_activations)
         self.backbone.layer4.register_full_backward_hook(_save_gradients)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.backbone(x)
+        return x
 
     @property
     def activations(self) -> torch.Tensor | None:
